@@ -1,0 +1,97 @@
+data:
+  datasets:
+    - path: "adult_clean_imb.csv"
+      #"adult_clean.csv"
+      name: "adult"
+      sample_frac: 0.2
+    #- path: "data2.csv"
+    #  name: "dataset2"
+
+  target: "Class"
+  #test_size: 0.2
+  #random_state: 42
+
+# wieder raus falls train test
+cv:
+  folds: 5
+
+preprocess:
+  drop_zero_rows: true
+  normalize: true
+
+balancing:
+  methods:
+    - name: random_oversample
+      enabled: true
+      grid:
+        balance_level: [0.5, 1.0]
+
+    - name: smote_nc
+      enabled: true
+      categorical_cols:
+        - workclass
+        - marital_status
+        - occupation
+        - relationship
+        - race
+        - sex
+      grid:
+        k_neighbors: [3, 5, 10]
+        #k_neighbors: [3]
+        balance_level: [0.5, 1.0]
+        
+
+    - name: enhance_borderline_NC
+      enabled: true
+      continuous_cols:
+        - age
+        - education_num
+        - capital_gain
+        - capital_loss
+        - hours_per_week
+        - native_country
+      categorical_cols:
+        - workclass
+        - marital_status
+        - occupation
+        - relationship
+        - race
+        - sex
+      grid:
+        k1: [3, 5, 10]
+        k2: [3, 5, 10]
+        balance_level: [0.5, 1.0]  
+        samp_meth: ["cm", "em"]
+        
+
+        
+#metrics:
+#  - accuracy
+#  - f1
+
+metrics:
+  accuracy:
+  precision:
+  recall:
+  f1:
+  f_beta:
+    beta: 2.0
+  roc_auc:
+  pr_auc:
+
+
+experiments:
+  #- name: decision_tree
+  #  algorithm: decision_tree
+  #  enabled: false
+  #  grid:
+  #    #max_depth: [5, 10, null]
+  #    min_samples_split: [5]
+
+  - name: logistic_regression
+    algorithm: logistic_regression
+    enabled: true
+    grid:
+      #C: [0.1, 1.0, 10.0]
+      C: [1.0]
+      max_iter: [300]
