@@ -3,4 +3,4 @@
 - pointdef: The definition of the position for an generated synthetic instance
 - enh_border: Calculation of relevant nearest neighbour => call pointdef (one synthetic instance for each minority neighbour)
 - enh_border_level: Same as enh_border. But in a loop until the aimed balance level is reached.
-- balancnig: Selection of Sampling Method                                                                           
+- balancing: Selection of Sampling Method                                                                           
