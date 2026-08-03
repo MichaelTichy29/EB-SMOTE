@@ -1,0 +1,96 @@
+data:
+  datasets:
+    - path: "creditcard.csv"
+      name: "credit"
+      sample_frac: 0.2
+    #- path: "data2.csv"
+    #  name: "dataset2"
+
+  target: "Class"
+  #test_size: 0.2
+  #random_state: 42
+
+# wieder raus falls train test
+cv:
+  folds: 5
+
+preprocess:
+  drop_zero_rows: true
+  normalize: true
+
+balancing:
+  methods:
+    - name: smote
+      enabled: true
+      grid:
+        k_neighbors: [3, 5,10]
+        #k_neighbors: [3]
+        balance_level: [0.5, 1.0]  
+        #balance_level: [0.5]  
+        
+        
+    - name: adasyn
+      enabled: true
+      fallback: smote
+      grid:
+        balance_level: [0.5, 1.0]  
+        n_neighbors: [3, 5, 10]
+        #n_neighbors: [3]
+        
+    - name: random_oversample
+      enabled: true
+      balance_level: [0.5, 1.0]  
+
+    - name: borderline_smote
+      enabled: true
+      grid:
+        kind: ["borderline-1", "borderline-2"]
+        k_neighbors: [3, 5, 10]
+        #k_neighbors: [3]
+        balance_level: [0.5, 1.0]  
+
+    - name: sl_smote
+      enabled: true
+      grid:
+        k_neighbors: [3, 5, 10]
+        #k_neighbors: [3]
+        balance_level: [0.5, 1.0]  
+
+    - name: enhance_borderline
+      enabled: true
+      grid:
+        k1: [3, 5, 10]
+        #k1: [3]
+        #k2: [5]
+        k2: [3, 5, 10]
+        balance_level: [0.5,1.0]  
+        samp_meth: ["cm", "em"]
+        
+metrics:
+  accuracy:
+  precision:
+  recall:
+  f1:
+  f_beta:
+    beta: 2.0
+  roc_auc:
+  pr_auc:
+
+experiments:
+  - name: decision_tree
+    enabled: false
+    algorithm: decision_tree
+    grid:
+      #max_depth: [5, 10, null]
+      #min_samples_split: [2, 5]
+      min_samples_split: [5]
+
+
+  - name: logistic_regression
+    enabled: true
+    algorithm: logistic_regression
+    grid:
+      #C: [0.1, 1.0, 10.0]
+      C: [1.0]
+      #max_iter: [100, 300]
+      max_iter: [300]
