@@ -8,10 +8,11 @@ In both variants the main (or main_nc) file has to be executed. This starts the 
 
 
 # data
+Link to the sources of the testdata we have used. 
 The datasets saved as an csv. And the python code to generate the more imbalanced dataset for the adult data. 
 
 # general 
-The requirements and some preprocessing used in both variants
+The requirements, some preprocessing and writing of results used in both variants
 
 # Statistical Tests
 The files stat_F, stat_mcnemar, stat_F_NC, stat_mcnemar_NC are built for statistical tests. As they only compare two methods each time they run without the config. The parameters are set in the source code  as this in only a kind of control center to use the methods impelmented before. 
