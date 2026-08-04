@@ -2,8 +2,8 @@
 This Repository contains the source code for my Bachelor's Thesis in Data Science with the titel "An Analysis of SMOTE-Based Oversampling Methods and the Introduction of Enhanced Borderline SMOTE (EB-SMOTE)." Thus the code contains a new oversampling method which has similarities with SL SMOTE or Border SMOTE. 
 
 
-# Nominal (NC) and continuous variant
-The EB- SMOTE is presented in two variants. For data that have continuous features only and for data, which have continuous and categorical features. Thus files with the ending "_NC" are bulit for the extension to handle also nominal features. 
+# Continuous and Nominal (NC) variant
+The EB- SMOTE is presented in two variants. For data that have continuous features only and for data, which have continuous and categorical features. Thus files with the suffix "_NC" are bulit for the extension to handle also nominal features. 
 In both variants the main (or main_nc) file has to be executed. This starts the pipeline with the grid given in the yaml.
 
 
